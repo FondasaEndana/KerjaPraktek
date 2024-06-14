@@ -43,6 +43,9 @@
                     <a class="nav-link" href="produk.php">Produk</a>
                 </li>
                 <li class="nav-item d-lg-none">
+                    <a class="nav-link" href="kategori.php">Kategori</a>
+                </li>
+                <li class="nav-item d-lg-none">
                     <a class="nav-link" href="penjualan_stok.php">Penjualan</a>
                 </li>
                 <li class="nav-item d-lg-none">

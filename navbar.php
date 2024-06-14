@@ -19,51 +19,58 @@ if (session_status() == PHP_SESSION_NONE) {
       background-color: blue !important;
       color: white !important;
     }
+    .navbar-brand {
+      margin-left: 10px; 
+    }
+    .profile-section {
+      margin-right: 10px; /* Menambahkan margin kanan pada profile */
+    }
   </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark warna1">
-    <div class="container">
-      <a class="navbar-brand me-3" href="index.php">
-        <img src="admin/originalSatnikk.png" alt="Logo" style="height: 40px;">
-      </a>
-      <button class="navbar-toggler card-header warna1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <a class="navbar-brand me-3" href="index.php">
+      <img src="admin/originalSatnikk.png" alt="Logo" style="height: 40px;">
+    </a>
+    <button class="navbar-toggler card-header warna1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-white card warna1" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white card warna1" href="about-us.php">Tentang Kami</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white card warna1" href="produk.php">Produk</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white card warna1" href="keranjang.php">
-              <i class=""></i> Keranjang
-            </a>
-          </li>
-        </ul>
-        <div class="dropdown">
-          <a class="nav-link text-white warna1 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user fa-lg ms-2"></i> &nbsp;&nbsp;
-            <?php echo isset($_SESSION['user']['displayName']) ? $_SESSION['user']['displayName'] : 'Guest'; ?>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white card warna1" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white card warna1" href="about-us.php">Tentang Kami</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white card warna1" href="Servis.php">Servis & Jasa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white card warna1" href="produk.php">Produk</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white card warna1" href="keranjang.php">
+            <i class=""></i> Keranjang
           </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <a class="nav-link text-white warna1 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user fa-lg ms-2"></i> &nbsp;&nbsp;
 
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="profile.php">Profil</a></li>
-            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="login.php">Keluar</a></li>
-          </ul>
-        </div>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="profile.php">Profil</a></li>
+          <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="login.php">Keluar</a></li>
+        </ul>
       </div>
     </div>
   </nav>

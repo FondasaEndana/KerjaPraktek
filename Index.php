@@ -18,7 +18,6 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
 </head>
 
 <style>
@@ -80,6 +79,16 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
         height: 85vh;
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
             url('Background_image/BGssd.jpeg');
+    }
+
+    /* CSS for fade-in animation */
+    .fade-in {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
     }
 </style>
 
@@ -184,7 +193,7 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
                     <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
                         <div class="card h-100">
                             <div class="image-box">
-                                <img src="image/<?php echo $data['foto']; ?>" class="card-img-top" alt="...">
+                                <img data-src="image/<?php echo $data['foto']; ?>" class="card-img-top fade-in" alt="...">
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $data['nama']; ?></h4>
@@ -208,6 +217,7 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Initialize Owl Carousel
             $("#hero-carousel").owlCarousel({
                 items: 1,
                 loop: true,
@@ -218,10 +228,32 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
                 nav: true,
                 navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"]
             });
+
+            // Intersection Observer for lazy loading
+            const images = document.querySelectorAll('.fade-in');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.onload = () => img.classList.add('visible');
+                        observer.unobserve(img);
+                    }
+                });
+            }, observerOptions);
+
+            images.forEach(image => {
+                observer.observe(image);
+            });
         });
     </script>
-
-
 </body>
 
 </html>

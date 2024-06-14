@@ -115,7 +115,7 @@ function generateRandomString($length = 10)
     require "navbar.php";
     ?>
     <div class="container mt-3">
-        <h2>Tambah Nota</h2>
+        <h2>Tambah Servis Komputer</h2>
 
         <div class="col-12 col-md-6 mb-5">
             <form action="" method="post" enctype="multipart/form-data" id="formSubmit">

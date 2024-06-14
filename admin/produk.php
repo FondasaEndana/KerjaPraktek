@@ -101,8 +101,8 @@ function generateRandomString($length = 10)
                     <div>
                         <label for="ketersedian_stok"> Ketersedian </label>
                         <select name="ketersediaan_stok" id="ketersediaan_stok" class="form-control">
-                            <option value="tersedia"> tersedia </option>
-                            <option value="habis"> habis </option>
+                            <option value="tersedia"> Tersedia </option>
+                            <option value="habis"> Pre-Order </option>
                         </select>
                     </div>
 

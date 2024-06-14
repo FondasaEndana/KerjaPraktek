@@ -5,7 +5,6 @@ require "../koneksi.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    // Jika ID nota tidak ditemukan, arahkan pengguna ke halaman lain atau tampilkan pesan kesalahan
     header("Location: nota.php");
     exit();
 }
@@ -13,9 +12,7 @@ if (isset($_GET['id'])) {
 $queryNotaSparepart = mysqli_query($conn, "SELECT * FROM nota_sparepart WHERE id = '$id'");
 $data = mysqli_fetch_array($queryNotaSparepart);
 
-// Pastikan $data tidak kosong
 if (!$data) {
-    // Jika data nota tidak ditemukan, arahkan pengguna ke halaman lain atau tampilkan pesan kesalahan
     header("Location: nota.php");
     exit();
 }
@@ -49,7 +46,7 @@ function generateRandomString($length = 10)
     require "navbar.php";
     ?>
     <div class="container mt-3">
-        <h2>Tambah Nota Sparepart</h2>
+        <h2>Detail Nota Sparepart</h2>
 
         <div class="col-12 col-md-6 mb-5">
             <form action="" method="post" enctype="multipart/form-data" id="formSubmit">
@@ -88,18 +85,19 @@ function generateRandomString($length = 10)
 
                 <div>
                     <label for="keterangan" class="mt-1 "> Keterangan </label>
-                    <textarea name="keterangan" id="keterangan" cols="30" rows="10" value="<?php echo $data['keterangan']; ?>" class="form-control"></textarea>
+                    <textarea name="keterangan" id="keterangan" cols="30" rows="10" class="form-control"><?php echo $data['keterangan']; ?></textarea>
                 </div>
 
 
                 <div>
                     <button type="submit" class="btn btn-outline-primary" name="simpan">Edit</button>
+                    <button type="submit" class="btn btn-outline-danger" name="hapus">Hapus</button>
+                    <button type="button" id="printButton" class="btn btn-outline-secondary no-print ms-auto">Print</button>
                 </div>
 
             </form>
             <?php
             if (isset($_POST['simpan'])) {
-                // Ambil nilai dari form
                 $nama_sparepart = htmlspecialchars($_POST['nama']);
                 $total_biaya = htmlspecialchars($_POST['total_biaya']);
                 $jumlah_sparepart = htmlspecialchars($_POST['jumlah_sparepart']);
@@ -108,7 +106,6 @@ function generateRandomString($length = 10)
                 $serial_number = htmlspecialchars($_POST['sn']);
                 $keterangan = htmlspecialchars($_POST['keterangan']);
 
-                // Insert into nota_servis table
                 $queryUpdateNota = mysqli_query($conn, "UPDATE nota_sparepart 
                     SET 
                     jumlah_sparepart = '$jumlah_sparepart', 
@@ -120,8 +117,6 @@ function generateRandomString($length = 10)
                     WHERE 
                     id = '$id'");
 
-
-
                 if ($queryUpdateNota) {
             ?>
                     <button class="btn btn-primary" type="button" disabled>
@@ -131,8 +126,22 @@ function generateRandomString($length = 10)
                     <meta http-equiv="refresh" content="2; url = nota.php" />
             <?php
                 } else {
-                    // Jika query gagal, tampilkan pesan kesalahan
                     echo '<div class="alert alert-danger" role="alert">Gagal menambahkan data penjualan!</div>';
+                }
+            }
+            ?>
+            <?php
+            if (isset($_POST['hapus'])) {
+                $queryHapus = mysqli_query($conn, "DELETE FROM nota_sparepart WHERE id = '$id'");
+
+                if ($queryHapus) {
+            ?>
+                    <button class="btn btn-primary justify-content-center text-center" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Nota Penjualan Terhapus
+                    </button>
+                    <meta http-equiv="refresh" content="2; url = nota.php" />
+            <?php
                 }
             }
             ?>
@@ -140,9 +149,13 @@ function generateRandomString($length = 10)
         </div>
     </div>
 
-
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../fontawesome/js/all.min.js"></script>
+    <script>
+        document.getElementById("printButton").addEventListener("click", function() {
+            window.location.href = 'print_nota_penjualan.php?id=<?php echo $id; ?>';
+        });
+    </script>
 </body>
 
 </html>

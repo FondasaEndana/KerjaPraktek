@@ -48,6 +48,12 @@
             </li>
 
             <li>
+                <a href="kategori.php" class="nav-link link-dark">
+                    <i class="fas fa-align-justify"></i> Kategori
+                </a>
+            </li>
+
+            <li>
                 <a href="penjualan_stok.php" class="nav-link link-dark">
                     <i class="fas fa-shopping-cart"></i> Penjualan
                 </a>
@@ -55,7 +61,7 @@
 
             <li>
                 <a href="nota.php" class="nav-link link-dark">
-                    <i class="fas fa-align-justify"></i> Nota
+                    <i class="fas fa-receipt"></i> Nota
                 </a>
             </li>
 

@@ -125,9 +125,11 @@ if (isset($_POST['loginbtn'])) {
         <h2>Login</h2>
         <form action="" method="post">
             <div>
+                Username
                 <input type="text" class="form-control" name="username" id="username" placeholder="Username">
             </div>
             <div>
+                Password
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
             <div>

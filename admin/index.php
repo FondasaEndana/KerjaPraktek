@@ -30,6 +30,7 @@ $jumlahNota = mysqli_num_rows($queryNota);
             background-size: cover;
             background-repeat: no-repeat;
         }
+
         .kotak {
             border: solid;
         }
@@ -54,6 +55,19 @@ $jumlahNota = mysqli_num_rows($queryNota);
             border: 2px solid #154c79;
             /* Penyesuaian border */
         }
+
+        .summary-laporan {
+            background-color: brown;
+            border-radius: 15px;
+            border: 2px solid brown;
+        }
+
+        .summary-jasa {
+            background-color:chocolate;
+            border-radius: 15px;
+            border: 2px solid chocolate;
+        }
+        
 
         .no-decoration {
             text-decoration: none;
@@ -128,7 +142,31 @@ $jumlahNota = mysqli_num_rows($queryNota);
                         </div>
                     </div>
                 </div>
-                
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 summary-laporan p-3 mb-3">
+                    <div class="row">
+                        <div class="col-5">
+                            <i class="fas fa-cogs fa-5x"></i>
+                        </div>
+                        <div class="col-7 text-white">
+                            <h3 class="fs-2">Laporan</h3>
+                            <p><a href="laporan.php" class=" no-decoration text-white">Tampilkan...</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 summary-jasa p-3 mb-3 ms-auto">
+                    <div class="row">
+                        <div class="col-5">
+                            <i class="fas fa-hands-helping fa-5x"></i>
+                        </div>
+                        <div class="col-7 text-white">
+                            <h3 class="fs-2">Jasa</h3>
+                            <p><a href="jasa.php" class=" no-decoration text-white">Tampilkan...</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

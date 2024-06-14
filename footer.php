@@ -19,6 +19,17 @@
                 width: auto;
             }
         }
+
+        /* CSS untuk footer */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -28,7 +39,7 @@
             <h5 class="text-center mb-5"> Temui Kami </h5>
             <div class="row justify-content-center">
                 <div class="col-sm-1 d-flex justify-content-center mb-4">
-                    <a href="https://www.facebook.com/fonda.endana"><i class="fab fa-facebook fs-2 text-light social"></i></a>
+                    <a href="#"><i class="fab fa-facebook fs-2 text-light social"></i></a>
                 </div>
                 <div class="col-sm-1 d-flex justify-content-center mb-4">
                     <a href="https://www.instagram.com/satnik_itsolutions?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram fs-2 text-light social"></i></a>
@@ -40,7 +51,10 @@
                     <a href="https://www.tiktok.com/@satniksolutions?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok fs-2 text-light social"></i></a>
                 </div>
                 <div class="col-sm-1 d-flex justify-content-center mb-4">
-                    <i class="fab fa-whatsapp fs-2"></i>
+                    <a href="https://maps.app.goo.gl/pWK92jbPEiGHJswH6"><i class="fas fa-map-marker-alt fs-2 text-light social"></i></a>
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center mb-4">
+                    <i class="fab fa-whatsapp fs-2 social"></i>
                 </div>
             </div>
 
@@ -55,9 +69,9 @@
     </div>
 
     <div class="container-fluid py-3 bg-dark text-light">
-        <div class="container d-flex justify-content-between">
-            <label for="">&copy; 2023 Fashion Store</label>
-            <label for="">Created by FashionInsta</label>
+        <div class="container footer-container">
+            <p class="footer-text">&copy; 2024 Sahabat Teknik</p>
+            <p class="footer-text">Created by SATNIK IT SOLUTIONS</p>
         </div>
     </div>
     <a href=""></a>

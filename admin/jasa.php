@@ -3,6 +3,7 @@ require "session.php";
 require "../koneksi.php";
 
 $queryJasa = mysqli_query($conn, "SELECT * FROM jasa");
+$queryNotaServis = mysqli_query($conn, "SELECT * FROM nota_servis");
 ?>
 
 <!DOCTYPE html>
@@ -40,32 +41,99 @@ $queryJasa = mysqli_query($conn, "SELECT * FROM jasa");
                 </ol>
             </nav>
 
-            <form action="tambah_jasa.php" method="POST">
-                <div class="mb-3">
-                    <label for="nama_jasa" class="form-label">Jenis Jasa</label>
-                    <select class="form-control" id="nama_jasa" name="nama_jasa" required>
-                        <?php
-                        if (mysqli_num_rows($queryJasa) > 0) {
-                            while ($row = mysqli_fetch_assoc($queryJasa)) {
-                                echo "<option value='" . $row['id'] . "'>" . $row['nama_jasa'] . "</option>";
-                            }
-                        } else {
-                            echo "<option value=''>Tidak ada data</option>";
-                        }
-                        ?>
-                    </select>
+            <!-- Tampilkan Nota Servis -->
+            <div class="row justify-content-between mt-4">
+                <div class="col-md-6">
+                    <h2 class="mb-3">Jasa Servis Komputer</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Kerusakan</th>
+                                    <th>Tanggal Servis</th>
+                                    <th>Total Biaya</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider table-divider-color">
+                                <?php
+                                $jumlah = 1;
+                                while ($data = mysqli_fetch_array($queryNotaServis)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $jumlah; ?></td>
+                                        <td><?php echo $data['nama_servis']; ?></td>
+                                        <td><?php echo $data['servis']; ?></td>
+                                        <td><?php echo $data['tanggal_servis']; ?></td>
+                                        <td><?php echo $data['total_biaya']; ?></td>
+                                        <td>
+                                            <a href="detail_nota.php?id=<?php echo $data['id']; ?>" class="btn btn-info">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    $jumlah++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="tambah_jasaServis.php" class="btn btn-success mb-3">
+                            <i class="fas fa-plus fa-lg"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Jasa Instalasi</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Instalasi</th>
+                                    <th>Alamat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider table-divider-color">
+                                <?php
+                                $jumlah = 1;
+                                while ($data = mysqli_fetch_array($queryJasa)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $jumlah; ?></td>
+                                        <td><?php echo $data['nama']; ?></td>
+                                        <td><?php echo $data['instalasi']; ?></td>
+                                        <td><?php echo $data['alamat']; ?></td>
+                                        <td>
+                                            <a href="detail_jasa_instalasi.php?id=<?php echo $data['id_jasa']; ?>" class="btn btn-info">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    $jumlah++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="tambah_jasa.php" class="btn btn-success mb-3">
+                            <i class="fas fa-plus fa-lg"></i>
+                        </a>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah Jasa</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../fontawesome/js/all.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../fontawesome/js/all.min.js"></script>
 </body>
 
 </html>
